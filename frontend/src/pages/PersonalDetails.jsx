@@ -49,7 +49,16 @@ function PersonalDetails() {
 
   const handleAadhaarVerify = (e) => {
     e.preventDefault(); // Prevent form from refreshing the page
-    
+    if(formData.name){
+      alert("Fill all details")
+    }
+    const res = fetch("localhost:8000/verify/aadhar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({name:formData.name,dob:formData.dob,aadhar_number:formData.aadhar_number,aadhar:formData.aadhar}),
+    });
   };
 
   const handlePanVerify = (e) => {
@@ -64,7 +73,7 @@ function PersonalDetails() {
 
 
   return (
-    <div className="personal-details p-8 max-w-lg mx-auto border-2 border-gray-300 rounded-lg shadow-md bg-gray-800 text-white">
+    <div className="p-8 border-2 border-gray-300 rounded-lg shadow-md bg-gray-800 text-white">
       <form onSubmit={handleSubmit}>
         <label className="block mb-4">
           <span className="text-lg font-medium">Name</span>
