@@ -47,6 +47,22 @@ function PersonalDetails() {
     console.log('Form Data Submitted:', formData);
   };
 
+  const handleAadhaarVerify = (e) => {
+    e.preventDefault(); // Prevent form from refreshing the page
+    
+  };
+
+  const handlePanVerify = (e) => {
+    e.preventDefault(); // Prevent form from refreshing the page
+    
+  };
+
+  const handleGateVerify = (e) => {
+    e.preventDefault(); // Prevent form from refreshing the page
+    
+  };
+
+
   return (
     <div className="personal-details p-8 max-w-lg mx-auto border-2 border-gray-300 rounded-lg shadow-md bg-gray-800 text-white">
       <form onSubmit={handleSubmit}>
@@ -139,7 +155,7 @@ function PersonalDetails() {
           <FileUpload name="aadhar" file={formData.aadhar} onFileChange={handleFileChange} />
           <button
             type="button"
-            onClick={() => alert('Aadhar file verified')}
+            onClick={handleAadhaarVerify}
             disabled={!fileVerified.aadhar}
             className="mt-2 ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 disabled:bg-gray-500 transition duration-200"
           >
@@ -151,7 +167,7 @@ function PersonalDetails() {
           <FileUpload name="pancard" file={formData.pancard} onFileChange={handleFileChange} />
           <button
             type="button"
-            onClick={() => alert('Pancard file verified')}
+            onClick={handlePanVerify}
             disabled={!fileVerified.pancard}
             className="mt-2 ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 disabled:bg-gray-500 transition duration-200"
           >
@@ -163,7 +179,7 @@ function PersonalDetails() {
           <FileUpload name="gate_scorecard" file={formData.gate_scorecard} onFileChange={handleFileChange} />
           <button
             type="button"
-            onClick={() => alert('Gate Scorecard file verified')}
+            onClick={handleGateVerify}
             disabled={!fileVerified.gate_scorecard}
             className="mt-2 ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 disabled:bg-gray-500 transition duration-200"
           >
