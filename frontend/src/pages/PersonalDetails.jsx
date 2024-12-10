@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import FileUpload from '../components/FileUpload';
-import Button from '../components/Button';
+import React, { useState } from "react";
+import FileUpload from "../components/FileUpload";
+import Button from "../components/Button";
 
 function PersonalDetails() {
   const [formData, setFormData] = useState({
-    name: '',
-    dob: '',
-    email: '',
-    aadhar_number: '',
-    gender: 'male',
-    mobile_number: '',
-    marks: '',
+    name: "",
+    dob: "",
+    email: "",
+    aadhar_number: "",
+    gender: "male",
+    mobile_number: "",
+    marks: "",
     aadhar: null,
     pancard: null,
     gate_scorecard: null,
@@ -44,33 +44,59 @@ function PersonalDetails() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent form from refreshing the page
-    console.log('Form Data Submitted:', formData);
+    console.log("Form Data Submitted:", formData);
   };
 
-  const handleAadhaarVerify = (e) => {
-    e.preventDefault(); // Prevent form from refreshing the page
-    if(formData.name){
-      alert("Fill all details")
+  const handleAadhaarVerify = async (e) => {
+    if (!formData.aadhar) {
+      alert("Please select a file before uploading.");
+      return;
     }
-    const res = fetch("localhost:8000/verify/aadhar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({name:formData.name,dob:formData.dob,aadhar_number:formData.aadhar_number,aadhar:formData.aadhar}),
-    });
+
+    const aadhar = new FormData();
+    aadhar.append("image", formData.aadhar); // Append the file with the key 'image'
+
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/verify/upload-image/",
+        {
+          method: "POST",
+          body: aadhar,
+        }
+      );
+
+      if (response.ok) {
+        let data = await response.json();
+        console.log("Upload successful. File path:", data.file_path);
+        const res = await fetch("http://127.0.0.1:8000/verify/aadhar/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            dob: formData.dob,
+            aadhar_number: formData.aadhar_number,
+            aadhar: data.file_path,
+          }),
+        });
+        data = await res.json()
+        console.log(data)
+      } else {
+        console.error("Upload failed.");
+      }
+    } catch (error) {
+      console.error("Error during file upload:", error);
+    }
   };
 
   const handlePanVerify = (e) => {
     e.preventDefault(); // Prevent form from refreshing the page
-    
   };
 
   const handleGateVerify = (e) => {
     e.preventDefault(); // Prevent form from refreshing the page
-    
   };
-
 
   return (
     <div className="p-8 border-2 border-gray-300 rounded-lg shadow-md bg-gray-800 text-white">
@@ -161,7 +187,11 @@ function PersonalDetails() {
 
         {/* File Uploads with Verify Button */}
         <div className="mb-6">
-          <FileUpload name="aadhar" file={formData.aadhar} onFileChange={handleFileChange} />
+          <FileUpload
+            name="aadhar"
+            file={formData.aadhar}
+            onFileChange={handleFileChange}
+          />
           <button
             type="button"
             onClick={handleAadhaarVerify}
@@ -173,7 +203,11 @@ function PersonalDetails() {
         </div>
 
         <div className="mb-6">
-          <FileUpload name="pancard" file={formData.pancard} onFileChange={handleFileChange} />
+          <FileUpload
+            name="pancard"
+            file={formData.pancard}
+            onFileChange={handleFileChange}
+          />
           <button
             type="button"
             onClick={handlePanVerify}
@@ -185,7 +219,11 @@ function PersonalDetails() {
         </div>
 
         <div className="mb-6">
-          <FileUpload name="gate_scorecard" file={formData.gate_scorecard} onFileChange={handleFileChange} />
+          <FileUpload
+            name="gate_scorecard"
+            file={formData.gate_scorecard}
+            onFileChange={handleFileChange}
+          />
           <button
             type="button"
             onClick={handleGateVerify}
@@ -196,7 +234,11 @@ function PersonalDetails() {
           </button>
         </div>
 
-        <Button text="Submit" type="submit" className="w-full py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 transition duration-200" />
+        <Button
+          text="Submit"
+          type="submit"
+          className="w-full py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 transition duration-200"
+        />
       </form>
     </div>
   );
