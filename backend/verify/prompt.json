@@ -1,0 +1,5 @@
+{
+    "aadhar": "extract name(should be string), date of birth(should be in DD/MM/YYYY) and aadhar number(should be a 12 digit number) from the given image in json format",
+    "pan": "extract name(should be string), date of birth(should be in DD/MM/YYYY) and pan number(should be a 9 alphanumeric long) from the given image in json format",
+    "gate": "extract name(should be string), gate score(should be a number) from the given image in json format"
+}
