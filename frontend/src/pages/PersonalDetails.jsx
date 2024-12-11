@@ -250,7 +250,7 @@ function PersonalDetails() {
               />
             </label>
 
-            <div className="border mt-3 border-gray-300 rounded-lg p-4 flex items-center space-x-2">
+            <div className="border mt-4 border-gray-300 rounded-lg p-4 flex items-center space-x-2">
   <FileUpload name="aadhar" file={formData.aadhar} onFileChange={handleFileChange} />
   <button
     type="button"
@@ -305,9 +305,9 @@ function PersonalDetails() {
             </label>
 
             <label className="block">
-              <span className="text-gray-600">Passout Date</span>
+              <span className="text-gray-600">Passout Year</span>
               <input
-                type="date"
+                type="text"
                 name="pass_out_date"
                 value={formData.pass_out_date}
                 onChange={handleChange}
