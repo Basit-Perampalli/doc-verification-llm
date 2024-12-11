@@ -47,19 +47,128 @@ function PersonalDetails() {
     console.log('Form Data Submitted:', formData);
   };
 
-  const handleAadhaarVerify = (e) => {
-    e.preventDefault();
-    console.log('Aadhar verification triggered.');
+const handleAadhaarVerify = async (e) => {
+  if (!formData.aadhar) {
+    alert("Please select a file before uploading.");
+    return;
+  }
+  const data_to_verify = {
+    name: formData.name,
+    dob: formData.dob,
+    aadhar_number: formData.aadhar_number,
+  };
+  const aadhar = new FormData();
+  aadhar.append("image", formData.aadhar); // Append the file with the key 'image'
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/verify/upload-image/", {
+      method: "POST",
+      body: aadhar,
+    });
+
+    if (response.ok) {
+      let data = await response.json();
+      console.log("Upload successful. File path:", data.file_path);
+      const res = await fetch("http://127.0.0.1:8000/verify/aadhar/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          aadhar: data.file_path,
+        }),
+      });
+      data = await res.json();
+      console.log(data);
+    } else {
+      console.error("Upload failed.");
+    }
+  } catch (error) {
+    console.error("Error during file upload:", error);
+  }
+};
+
+
+  const handlePanVerify = async(e) => {
+    if (!formData.pan) {
+    alert("Please select a file before uploading.");
+    return;
+  }
+
+  const pan = new FormData();
+  pan.append("image", formData.pan); // Append the file with the key 'image'
+  const data_to_verify = {
+    name: formData.name,
+    dob: formData.dob
   };
 
-  const handlePanVerify = (e) => {
-    e.preventDefault();
-    console.log('PAN verification triggered.');
+  try {
+    const response = await fetch("http://127.0.0.1:8000/verify/upload-image/", {
+      method: "POST",
+      body: pan,
+    });
+
+    if (response.ok) {
+      let data = await response.json();
+      console.log("Upload successful. File path:", data.file_path);
+      const res = await fetch("http://127.0.0.1:8000/verify/pan/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          aadhar: data.file_path,
+        }),
+      });
+      data = await res.json();
+      console.log(data);
+    } else {
+      console.error("Upload failed.");
+    }
+  } catch (error) {
+    console.error("Error during file upload:", error);
+  }
   };
 
-  const handleGateVerify = (e) => {
-    e.preventDefault();
-    console.log('GATE Scorecard verification triggered.');
+  const handleGateVerify = async(e) => {
+    if (!formData.gate_scorecard) {
+    alert("Please select a file before uploading.");
+    return;
+  }
+
+  const gate = new FormData();
+  gate.append("image", formData.gate_scorecard); // Append the file with the key 'image'
+  const data_to_verify = {
+    name: formData.name,
+    marks: formData.marks
+  };
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/verify/upload-image/", {
+      method: "POST",
+      body: gate,
+    });
+
+    if (response.ok) {
+      let data = await response.json();
+      console.log("Upload successful. File path:", data.file_path);
+      const res = await fetch("http://127.0.0.1:8000/verify/gate/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          gate: data.file_path,
+        }),
+      });
+      data = await res.json();
+      console.log(data);
+    } else {
+      console.error("Upload failed.");
+    }
+  } catch (error) {
+    console.error("Error during file upload:", error);
+  }
   };
 
   return (
