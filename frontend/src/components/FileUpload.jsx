@@ -10,7 +10,6 @@ function FileUpload({ name, file, onFileChange }) {
           onChange={(e) => onFileChange(e, name)}
         />
       </label>
-      {file && <p>{file.name}</p>}
     </div>
   );
 }

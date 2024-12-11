@@ -47,8 +47,23 @@ function PersonalDetails() {
     console.log('Form Data Submitted:', formData);
   };
 
+  const handleAadhaarVerify = (e) => {
+    e.preventDefault();
+    console.log('Aadhar verification triggered.');
+  };
+
+  const handlePanVerify = (e) => {
+    e.preventDefault();
+    console.log('PAN verification triggered.');
+  };
+
+  const handleGateVerify = (e) => {
+    e.preventDefault();
+    console.log('GATE Scorecard verification triggered.');
+  };
+
   return (
-    <div className="p-10 max-w-4xl mx-auto bg-white rounded-lg shadow-lg border border-gray-200">
+    <div className="p-10 max-w-5xl mx-auto bg-white rounded-lg shadow-lg border border-gray-200">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Application Form</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-8">
@@ -127,7 +142,7 @@ function PersonalDetails() {
             </label>
 
             <label className="block col-span-2">
-              <span className="text-gray-600">Gate Marks</span>
+              <span className="text-gray-600">Marks</span>
               <input
                 type="text"
                 name="marks"
@@ -143,12 +158,13 @@ function PersonalDetails() {
         <div className="mb-8">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">Document Uploads</h2>
           <div className="space-y-6">
-            <div className='grid grid-cols-2 gap-6'>
+          <div className='grid grid-cols-2 gap-6'>
               <FileUpload name="aadhar" file={formData.aadhar} onFileChange={handleFileChange} />
               <button
                 type="button"
+                onClick={handleAadhaarVerify}
                 disabled={!fileVerified.aadhar}
-                className=" ml-4 px-6 py bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+                className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
               >
                 Verify Aadhar
               </button>
@@ -157,8 +173,9 @@ function PersonalDetails() {
               <FileUpload name="pancard" file={formData.pancard} onFileChange={handleFileChange} />
               <button
                 type="button"
+                onClick={handlePanVerify}
                 disabled={!fileVerified.pancard}
-                className="ml-4 px-6 py bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+                className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
               >
                 Verify Pan Card
               </button>
@@ -167,8 +184,9 @@ function PersonalDetails() {
               <FileUpload name="gate_scorecard" file={formData.gate_scorecard} onFileChange={handleFileChange} />
               <button
                 type="button"
+                onClick={handleGateVerify}
                 disabled={!fileVerified.gate_scorecard}
-                className="ml-4 px-6 py bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+                className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
               >
                 Verify GATE Scorecard
               </button>
