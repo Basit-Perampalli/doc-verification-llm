@@ -6,12 +6,13 @@ function PersonalDetails() {
   const [formData, setFormData] = useState({
     //Personal Details
     name: '',
-    dob: '',
+    dob: '',    
     email: '',
     mobile_number: '',
-    gender: 'male',
     aadhar_number: '',
     aadhar: null,
+    aadhar_verified:false,
+
 
     //Educational Details
     highest_education: '',
@@ -21,8 +22,7 @@ function PersonalDetails() {
     roll_number: '',
     cgpa_percentage: '',
     xMarksheet: null,
-
-    // GATE details
+    xMarksheet_verification:false,    // GATE details
     gate_registration_number: '',
     gate_test_paper: '',
     gate_exam_date: '',
@@ -32,9 +32,9 @@ function PersonalDetails() {
   });
 
   const [fileVerified, setFileVerified] = useState({
-    aadhar: false,
-    xMarksheet: false,
-    gate_scorecard: false,
+    aadhar: -1,
+    xMarksheet: -1,
+    gate_scorecard: -1,
   });
 
   const handleChange = (e) => {
@@ -53,144 +53,164 @@ function PersonalDetails() {
     });
     setFileVerified({
       ...fileVerified,
-      [field]: !!file,
+      [field]: 0,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('Form Data Submitted:', formData);
-  };
-
-  const handleAadhaarVerify = async (e) => {
-    if (!formData.aadhar) {
-      alert('Please select a file before uploading.');
-      return;
-    }
-    const data_to_verify = {
-      name: formData.name,
-      dob: formData.dob,
-      aadhar_number: formData.aadhar_number,
-    };
-    const aadhar = new FormData();
-    aadhar.append('image', formData.aadhar);
-
-    try {
-      const response = await fetch('http://127.0.0.1:8000/verify/upload-image/', {
-        method: 'POST',
-        body: aadhar,
+    const res = await fetch("http://127.0.0.1:8000/applicantform/users/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-
-      if (response.ok) {
-        let data = await response.json();
-        console.log('Upload successful. File path:', data.file_path);
-        const res = await fetch('http://127.0.0.1:8000/verify/aadhar/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            aadhar: data.file_path,
-          }),
-        });
-        data = await res.json();
-        console.log(data);
-      } else {
-        console.error('Upload failed.');
-      }
-    } catch (error) {
-      console.error('Error during file upload:', error);
-    }
+      data = await res.json();
+      console.log(data);
   };
 
-  const handleGateVerify = async (e) => {
-    if (!formData.gate_scorecard) {
-      alert('Please select a file before uploading.');
-      return;
-    }
-    const data_to_verify = {
-      name: formData.name,
-      dob: formData.dob,
-    };
-    const gate_scorecard = new FormData();
-    gate_scorecard.append('image', formData.gate_scorecard);
-
-    try {
-      const response = await fetch('http://127.0.0.1:8000/verify/upload-image/', {
-        method: 'POST',
-        body: gate_scorecard,
+const handleAadhaarVerify = async (e) => {
+  if (!formData.aadhar) {
+    alert("Please select a file before uploading.");
+    return;
+  }
+  const aadhar = new FormData();
+  aadhar.append("image", formData.aadhar); // Append the file with the key 'image'
+  
+  try {
+    const response = await fetch("http://127.0.0.1:8000/verify/upload-image/", {
+      method: "POST",
+      body: aadhar,
+    });
+    
+    if (response.ok) {
+      let data = await response.json();
+      console.log("Upload successful. File path:", data.file_path);
+      const data_to_verify = {
+        name: formData.name,
+        dob: formData.dob,
+        aadhar_number: formData.aadhar_number,
+        aadhar: data.file_path
+      };
+      const res = await fetch("http://127.0.0.1:8000/verify/aadhar/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data_to_verify),
       });
-
-      if (response.ok) {
-        let data = await response.json();
-        console.log('Upload successful. File path:', data.file_path);
-        const res = await fetch('http://127.0.0.1:8000/verify/gate/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            gate: data.file_path,
-          }),
-        });
-        data = await res.json();
-        console.log(data);
-      } else {
-        console.error('Upload failed.');
-      }
-    } catch (error) {
-      console.error('Error during file upload:', error);
+      data = await res.json();
+      if (data.verified === true){
+      setFormData({
+        ...formData,
+        'aadhar': true,
+      });
+      setFileVerified({...fileVerified,'aadhar':1})
     }
-  };
+    else{
+      setFileVerified({ ...fileVerified, aadhar: 0 });
+    }
+      console.log(data);
+    } else {
+      console.error("Upload failed.");
+    }
+  } catch (error) {
+    console.error("Error during file upload:", error);
+  }
+};
 
-  const handlexMarkVerify = async (e) => {
+const handleGateVerify = async (e) => {
+  if (!formData.gate_scorecard) {
+    alert("Please select a file before uploading.");
+    return;
+  }
+  const data_to_verify = {
+    name: formData.name,
+    dob: formData.dob,
+    // aadhar_number: formData.aadhar_number,
+  };
+  const aadhar = new FormData();
+  aadhar.append("image", formData.gate_scorecard); // Append the file with the key 'image'
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/verify/upload-image/", {
+      method: "POST",
+      body: gate_scorecard,
+    });
+
+    if (response.ok) {
+      let data = await response.json();
+      console.log("Upload successful. File path:", data.file_path);
+      const res = await fetch("http://127.0.0.1:8000/verify/aadhar/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          aadhar: data.file_path,
+        }),
+      });
+      data = await res.json();
+      console.log(data);
+    } else {
+      console.error("Upload failed.");
+    }
+  } catch (error) {
+    console.error("Error during file upload:", error);
+  }
+};
+
+const handlexMarkVerify = async(e) => {
     if (!formData.xMarksheet) {
-      alert('Please select a file before uploading.');
-      return;
-    }
+    alert("Please select a file before uploading.");
+    return;
+  }
 
-    const xmark = new FormData();
-    xmark.append('image', formData.xMarksheet);
-    const data_to_verify = {
-      name: formData.name,
-      dob: formData.dob,
-    };
+  const xmark = new FormData();
+  xmark.append("image", formData.xMarksheet); // Append the file with the key 'image'
+  try {
+    const response = await fetch("http://127.0.0.1:8000/verify/upload-image/", {
+      method: "POST",
+      body: xmark,
+    });
 
-    try {
-      const response = await fetch('http://127.0.0.1:8000/verify/upload-image/', {
-        method: 'POST',
-        body: xmark,
+    if (response.ok) {
+      let data = await response.json();
+      const data_to_verify = {
+        name: formData.name,
+        marks: formData.cgpa_percentage,
+        sheet:data.file_path
+      };
+      console.log("Upload successful. File path:", data.file_path);
+      const res = await fetch("http://127.0.0.1:8000/verify/xmark/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data_to_verify),
       });
-
-      if (response.ok) {
-        let data = await response.json();
-        console.log('Upload successful. File path:', data.file_path);
-        const res = await fetch('http://127.0.0.1:8000/verify/xmark/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            gate: data.file_path,
-          }),
-        });
-        data = await res.json();
-        console.log(data);
-      } else {
-        console.error('Upload failed.');
-      }
-    } catch (error) {
-      console.error('Error during file upload:', error);
+      data = await res.json();
+      console.log(data);
+    } else {
+      console.error("Upload failed.");
     }
+  } catch (error) {
+    console.error("Error during file upload:", error);
+  }
   };
 
   return (
-    <div className="p-8 max-w-5xl mx-auto bg-white rounded-lg shadow-md border border-gray-200">
-      {/* <h1 className="text-3xl font-semibold text-gray-800 mb-6">Application Form</h1> */}
+    <div className="p-10 max-w-5xl mx-auto bg-white rounded-lg shadow-lg border border-gray-200">
+      
+        <h1 className="text-center text-4xl font-semibold mb-8">Job Application Form</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">Personal Details</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+            Personal Details
+          </h2>
+          <div className="grid grid-cols-2 gap-6">
             <label className="block">
               <span className="text-gray-600">Full Name</span>
               <input
@@ -251,22 +271,49 @@ function PersonalDetails() {
             </label>
 
             <div className="border mt-4 border-gray-300 rounded-lg p-4 flex items-center space-x-2">
-  <FileUpload name="aadhar" file={formData.aadhar} onFileChange={handleFileChange} />
-  <button
-    type="button"
-    onClick={handleAadhaarVerify}
-    disabled={!fileVerified.aadhar}
-    className="px-2 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
-  >
-    Verify Aadhar
-  </button>
-</div>
-
+              <FileUpload
+                name="aadhar"
+                file={formData.aadhar}
+                onFileChange={handleFileChange}
+              />
+              <div>
+                {fileVerified.aadhar === -1 ? (
+                  <button
+                    type="button"
+                    onClick={handleAadhaarVerify}
+                    disabled={!fileVerified.aadhar}
+                    className="px-2 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+                  >
+                    Verify Aadhar
+                  </button>
+                ) : fileVerified.aadhar === 0 ? (
+                  <div className="flex">
+                    <button
+                      type="button"
+                      onClick={handleAadhaarVerify}
+                      className="px-2 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+                    >
+                      Verify Again
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <div
+                      className="px-2 py-2 bg-green-600 text-white rounded-md focus:outline-none  disabled:bg-gray-400"
+                    >
+                      Verified
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">Educational Details</h2>
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+            Educational Details
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <label className="block">
               <span className="text-gray-600">Highest Education</span>
@@ -280,7 +327,7 @@ function PersonalDetails() {
               />
             </label>
 
-            <label className="block">
+            <label className="block col-span-2">
               <span className="text-gray-600">University Name</span>
               <input
                 type="text"
@@ -288,11 +335,11 @@ function PersonalDetails() {
                 value={formData.university_name}
                 onChange={handleChange}
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter university name"
+                placeholder="Enter University Name"
               />
             </label>
 
-            <label className="block">
+            <label className="block col-span-2">
               <span className="text-gray-600">Institute Name</span>
               <input
                 type="text"
@@ -300,7 +347,7 @@ function PersonalDetails() {
                 value={formData.institute_name}
                 onChange={handleChange}
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter institute name"
+                placeholder="Enter Institute Name"
               />
             </label>
 
@@ -315,7 +362,7 @@ function PersonalDetails() {
               />
             </label>
 
-            <label className="block">
+            <label className="block col-span-2">
               <span className="text-gray-600">Roll Number</span>
               <input
                 type="text"
@@ -323,11 +370,11 @@ function PersonalDetails() {
                 value={formData.roll_number}
                 onChange={handleChange}
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter roll number"
+                placeholder="Enter Roll Number"
               />
             </label>
 
-            <label className="block">
+            <label className="block col-span-2">
               <span className="text-gray-600">CGPA/Percentage</span>
               <input
                 type="text"
@@ -335,52 +382,57 @@ function PersonalDetails() {
                 value={formData.cgpa_percentage}
                 onChange={handleChange}
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter CGPA or percentage"
+                placeholder="Enter CGPA or Percentage"
               />
             </label>
 
-            <div className="border border-gray-300 rounded-lg p-4 flex items-center space-x-2">
-              <FileUpload name="xMarksheet" file={formData.xMarksheet} onFileChange={handleFileChange} />
+            <div className="grid grid-cols-2 gap-10">
+              <FileUpload
+                name="xMarksheet"
+                file={formData.xMarksheet}
+                onFileChange={handleFileChange}
+              />
               <button
                 type="button"
                 onClick={handlexMarkVerify}
-                disabled={!fileVerified.xMarksheet}
                 className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
               >
-                Verify Marksheet
+                Verify X Marksheet
               </button>
             </div>
           </div>
         </div>
 
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">GATE Details</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <label className="block">
-              <span className="text-gray-600">GATE Registration Number</span>
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+            GATE Details
+          </h2>
+          <div className="space-y-6">
+            <label className="block col-span-2">
+              <span className="text-gray-600">Registration Number</span>
               <input
                 type="text"
                 name="gate_registration_number"
                 value={formData.gate_registration_number}
                 onChange={handleChange}
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter GATE registration number"
+                placeholder="Enter Registration Number"
               />
             </label>
 
-            <label className="block">
-              <span className="text-gray-600">Test Paper</span>
+            <label className="block col-span-2">
+              <span className="text-gray-600">Gate Test Paper</span>
               <input
                 type="text"
                 name="gate_test_paper"
                 value={formData.gate_test_paper}
                 onChange={handleChange}
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter GATE test paper"
+                placeholder="Enter Gate Test Paper"
               />
             </label>
 
-            <label className="block">
+            <label className="block col-span-2">
               <span className="text-gray-600">Exam Date</span>
               <input
                 type="date"
@@ -388,10 +440,11 @@ function PersonalDetails() {
                 value={formData.gate_exam_date}
                 onChange={handleChange}
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter Exam Date"
               />
             </label>
 
-            <label className="block">
+            <label className="block col-span-2">
               <span className="text-gray-600">GATE Score</span>
               <input
                 type="text"
@@ -399,11 +452,11 @@ function PersonalDetails() {
                 value={formData.gate_score}
                 onChange={handleChange}
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter GATE score"
+                placeholder="Enter GATE Score"
               />
             </label>
 
-            <label className="block">
+            <label className="block col-span-2">
               <span className="text-gray-600">GATE AIR Rank</span>
               <input
                 type="text"
@@ -411,24 +464,33 @@ function PersonalDetails() {
                 value={formData.gate_air_rank}
                 onChange={handleChange}
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter AIR rank"
+                placeholder="Enter GATE AIR Rank"
               />
             </label>
 
-            <div className="border mt-3 border-gray-300 rounded-lg p-4 flex items-center space-x-2">
-              <FileUpload name="gate_scorecard" file={formData.gate_scorecard} onFileChange={handleFileChange} />
+            <div className="grid grid-cols-2 gap-6">
+              <FileUpload
+                name="gate_scorecard"
+                file={formData.gate_scorecard}
+                onFileChange={handleFileChange}
+              />
               <button
                 type="button"
                 onClick={handleGateVerify}
                 disabled={!fileVerified.gate_scorecard}
                 className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
               >
-                Verify Gate Scorecard
+                Verify GATE Scorecard
               </button>
             </div>
           </div>
         </div>
 
+        <Button
+          text="Submit"
+          type="submit"
+          className="w-full py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
         <div className="flex justify-center">
   <Button
     text="Submit"
