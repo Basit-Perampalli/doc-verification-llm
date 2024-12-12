@@ -1,0 +1,34 @@
+{
+    "gate@img3.jpeg": {
+        "data": "{\"name\": \"yamini mittal\", \"regno\": \"bt16529029025\", \"gate score\": 625, \"marks out of 100\": 43.9, \"all india rank\": 9124}\n\n**answer**: {\"name\": \"yamini mittal\", \"regno\": \"bt16529029025\", \"gate score\": 625, \"marks out of 100\": 43.9, \"all india rank\": 9124}",
+        "timetaken": 3.53930401802063
+    },
+    "img10.jpeg": {
+        "data": "{\"candidate name\": \"gaukaran\", \"registration number\": \"xl20s36020115\", \"gate score\": 337, \"marks out of 100\": 31, \"all india rank in this paper\": 3693}",
+        "timetaken": 1.8229093551635742
+    },
+    "img4.jpeg": {
+        "data": "{\"candidate name\": \"subhobrata paul\", \"regno\": \"bt2256506204\", \"gate score\": 731, \"marks out of 100\": 58, \"all india ranking\": 66}",
+        "timetaken": 3.8111472129821777
+    },
+    "img5.jpeg": {
+        "data": "{\"candidatename\": \"ankur agrawal\", \"regno\": \"me19s11228033\", \"gate score\": 902, \"marks out of 100\": 85.49, \"all india rank\": 65}",
+        "timetaken": 3.1239967346191406
+    },
+    "img6.jpeg": {
+        "data": "{\"candidatename\": \"mohd danish\", \"registration number\": \"ce21s11407497\", \"gate score\": 540, \"marks out of 100\": 47.31, \"all india ranking\": 4596}",
+        "timetaken": 1.7844011783599854
+    },
+    "img7.jpeg": {
+        "data": "{\"candidatename\":\"shakir ahmad bhat\",\"regno\":\"ce19s83051160\",\"gatescore\":352,\"marksoutof100\":28.36,\"allindiarank\":20407}",
+        "timetaken": 1.4403560161590576
+    },
+    "img8.jpeg": {
+        "data": "{\n    \"candidatename\": \"y. yoshi\",\n    \"registrationnumber\": \"xl21s66005091\",\n    \"gatescore\": 361,\n    \"marksoutof100\": 36.67,\n    \"allindiarank\": 3586\n}",
+        "timetaken": 2.8894639015197754
+    },
+    "img9.jpeg": {
+        "data": "{\n  \"candidate name\": \"shruti umarvaish\",\n  \"registration number\": \"bt21s56005123\",\n  \"gate score\": 541,\n  \"marks out of 100\": 43,\n  \"all india rank\": 426\n}",
+        "timetaken": 2.1904726028442383
+    }
+}
