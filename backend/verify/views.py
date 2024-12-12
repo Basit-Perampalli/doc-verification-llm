@@ -85,11 +85,14 @@ def upload_image(request):
         uploaded_file = request.FILES["image"]
 
         # Save the file temporarily
-        fs = FileSystemStorage(location="not_preprocessed/")
+        fs = FileSystemStorage(location="temp/")
         filename = fs.save(uploaded_file.name, uploaded_file)
         file_path = fs.path(filename)
-
-        # Return the file path as a response
+        
+        if "@" in filename:
+            fs = FileSystemStorage(location="not_preprocessed/")
+            file_path = fs.save(uploaded_file.name, uploaded_file)
+            
         return JsonResponse({"file_path": file_path}, status=200)
 
     return JsonResponse({"error": "Invalid request"}, status=400)
@@ -127,11 +130,15 @@ def verify_aadhar(request):
     )
 
 
-@api_view(["POST"])
+@api_view(["GET"])
 def get_extracted_batch_data(request):
-    
-    return Response({"result":res,'verified':verified,"size": os.path.getsize(aadhar)}, status=status.HTTP_200_OK)
-
+    output = {}
+    try:
+        with open("./batchscript/output.json") as f:
+            output = json.loads(f.read())
+    except:
+        pass
+    return Response(output, status=status.HTTP_200_OK)
 
 @api_view(["POST"])
 def x_marksheet(request):
