@@ -3,7 +3,7 @@
 # import json
 
 # # Initialize Together client with your API key
-# client = Together(api_key="f5768fe361d19904facb1ecc05f9bf26e847d4fa2556f703ec6fab79537edc09")
+# client = Together(api_key="")
 
 # # Define the prompt and image path
 # getDescriptionPrompt = "Extract only the fields: name, date of birth (dob), gender ,id and issue date in JSON format."
@@ -63,7 +63,7 @@ import json
 import time
 
 # Initialize Together client with your API key
-client = Together(api_key="f5768fe361d19904facb1ecc05f9bf26e847d4fa2556f703ec6fab79537edc09")
+client = Together(api_key="")
 
 # Function to encode image as base64
 def encode_image(image_path):

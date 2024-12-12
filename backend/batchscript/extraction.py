@@ -197,7 +197,7 @@ if __name__ == "__main__":
     
     
     clients = [
-        Together(api_key="770eedd0ceda2fa35a9ac7b7fdf7cae17a277301f5ebb9c19afb000a7ef79f18"),
+        Together(api_key=""),
     ]
     round = 0
     while True:
