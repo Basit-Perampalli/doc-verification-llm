@@ -1,33 +1,32 @@
-import React, { useState } from 'react';
-import FileUpload from '../components/FileUpload';
-import Button from '../components/Button';
+import React, { useState } from "react";
+import FileUpload from "../components/FileUpload";
+import Button from "../components/Button";
 
 function PersonalDetails() {
   const [formData, setFormData] = useState({
     //Personal Details
-    name: '',
-    dob: '',    
-    email: '',
-    mobile_number: '',
-    aadhar_number: '',
+    name: "",
+    dob: "",
+    email: "",
+    mobile_number: "",
+    aadhar_number: "",
     aadhar: null,
-    aadhar_verified:false,
-
+    aadhar_verified: false,
 
     //Educational Details
-    highest_education: '',
-    university_name: '',
-    institute_name: '',
-    pass_out_date: '',
-    roll_number: '',
-    cgpa_percentage: '',
+    highest_education: "",
+    university_name: "",
+    institute_name: "",
+    pass_out_date: "",
+    roll_number: "",
+    cgpa_percentage: "",
     xMarksheet: null,
-    xMarksheet_verification:false,    // GATE details
-    gate_registration_number: '',
-    gate_test_paper: '',
-    gate_exam_date: '',
-    gate_score: '',
-    gate_air_rank: '',
+    xMarksheet_verification: false, // GATE details
+    gate_registration_number: "",
+    gate_test_paper: "",
+    gate_exam_date: "",
+    gate_score: "",
+    gate_air_rank: "",
     gate_scorecard: null,
   });
 
@@ -57,154 +56,165 @@ function PersonalDetails() {
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Data Submitted:', formData);
+    console.log("Form Data Submitted:", formData);
     const res = await fetch("http://127.0.0.1:8000/applicantform/users/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      data = await res.json();
-      console.log(data);
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    data = await res.json();
+    console.log(data);
   };
 
-const handleAadhaarVerify = async (e) => {
-  if (!formData.aadhar) {
-    alert("Please select a file before uploading.");
-    return;
-  }
-  const aadhar = new FormData();
-  aadhar.append("image", formData.aadhar); // Append the file with the key 'image'
-  
-  try {
-    const response = await fetch("http://127.0.0.1:8000/verify/upload-image/", {
-      method: "POST",
-      body: aadhar,
-    });
-    
-    if (response.ok) {
-      let data = await response.json();
-      console.log("Upload successful. File path:", data.file_path);
-      const data_to_verify = {
-        name: formData.name,
-        dob: formData.dob,
-        aadhar_number: formData.aadhar_number,
-        aadhar: data.file_path
-      };
-      const res = await fetch("http://127.0.0.1:8000/verify/aadhar/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data_to_verify),
-      });
-      data = await res.json();
-      if (data.verified === true){
-      setFormData({
-        ...formData,
-        'aadhar': true,
-      });
-      setFileVerified({...fileVerified,'aadhar':1})
+  const handleAadhaarVerify = async (e) => {
+    if (!formData.aadhar || !formData.name || !formData.aadhar_number || formData.aadhar_number.length!==12) {
+      alert("Please enter the details before uploading.");
+      return;
     }
-    else{
-      setFileVerified({ ...fileVerified, aadhar: 0 });
-    }
-      console.log(data);
-    } else {
-      console.error("Upload failed.");
-    }
-  } catch (error) {
-    console.error("Error during file upload:", error);
-  }
-};
+    const aadhar = new FormData();
+    aadhar.append("image", formData.aadhar); // Append the file with the key 'image'
 
-const handleGateVerify = async (e) => {
-  if (!formData.gate_scorecard) {
-    alert("Please select a file before uploading.");
-    return;
-  }
-  const data_to_verify = {
-    name: formData.name,
-    dob: formData.dob,
-    // aadhar_number: formData.aadhar_number,
-  };
-  const aadhar = new FormData();
-  aadhar.append("image", formData.gate_scorecard); // Append the file with the key 'image'
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/verify/upload-image/",
+        {
+          method: "POST",
+          body: aadhar,
+        }
+      );
 
-  try {
-    const response = await fetch("http://127.0.0.1:8000/verify/upload-image/", {
-      method: "POST",
-      body: gate_scorecard,
-    });
-
-    if (response.ok) {
-      let data = await response.json();
-      console.log("Upload successful. File path:", data.file_path);
-      const res = await fetch("http://127.0.0.1:8000/verify/aadhar/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      if (response.ok) {
+        let data = await response.json();
+        console.log("Upload successful. File path:", data.file_path);
+        const data_to_verify = {
+          name: formData.name,
+          dob: formData.dob,
+          aadhar_number: formData.aadhar_number,
           aadhar: data.file_path,
-        }),
-      });
-      data = await res.json();
-      console.log(data);
-    } else {
-      console.error("Upload failed.");
+        };
+        const res = await fetch("http://127.0.0.1:8000/verify/aadhar/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data_to_verify),
+        });
+        data = await res.json();
+        if (data.verified === true) {
+          setFormData({
+            ...formData,
+            aadhar: true,
+          });
+          setFileVerified({ ...fileVerified, aadhar: 1 });
+        } else {
+          setFileVerified({ ...fileVerified, aadhar: 0 });
+        }
+        console.log(data);
+      } else {
+        console.error("Upload failed.");
+      }
+    } catch (error) {
+      console.error("Error during file upload:", error);
     }
-  } catch (error) {
-    console.error("Error during file upload:", error);
-  }
-};
+  };
 
-const handlexMarkVerify = async(e) => {
+  const handleGateVerify = async (e) => {
+    if (!formData.gate_scorecard) {
+      alert("Please select a file before uploading.");
+      return;
+    }
+    
+    const gate = new FormData();
+    gate.append("image", formData.gate_scorecard); // Append the file with the key 'image'
+
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/verify/upload-image/",
+        {
+          method: "POST",
+          body:gate,
+        }
+      );
+
+      if (response.ok) {
+        let data = await response.json();
+        const data_to_verify = {
+          name: formData.name,
+          reg_number: formData.gate_registration_number,
+          score : formData.gate_score,
+          rank : formData.gate_air_rank,
+          gate: data.file_path
+        };
+        console.log("Upload successful. File path:", data.file_path);
+        const res = await fetch("http://127.0.0.1:8000/verify/gate/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data_to_verify),
+        });
+        data = await res.json();
+        console.log(data);
+      } else {
+        console.error("Upload failed.");
+      }
+    } catch (error) {
+      console.error("Error during file upload:", error);
+    }
+  };
+
+  const handlexMarkVerify = async (e) => {
     if (!formData.xMarksheet) {
-    alert("Please select a file before uploading.");
-    return;
-  }
-
-  const xmark = new FormData();
-  xmark.append("image", formData.xMarksheet); // Append the file with the key 'image'
-  try {
-    const response = await fetch("http://127.0.0.1:8000/verify/upload-image/", {
-      method: "POST",
-      body: xmark,
-    });
-
-    if (response.ok) {
-      let data = await response.json();
-      const data_to_verify = {
-        name: formData.name,
-        marks: formData.cgpa_percentage,
-        sheet:data.file_path
-      };
-      console.log("Upload successful. File path:", data.file_path);
-      const res = await fetch("http://127.0.0.1:8000/verify/xmark/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data_to_verify),
-      });
-      data = await res.json();
-      console.log(data);
-    } else {
-      console.error("Upload failed.");
+      alert("Please select a file before uploading.");
+      return;
     }
-  } catch (error) {
-    console.error("Error during file upload:", error);
-  }
+
+    const xmark = new FormData();
+    xmark.append("image", formData.xMarksheet); // Append the file with the key 'image'
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/verify/upload-image/",
+        {
+          method: "POST",
+          body: xmark,
+        }
+      );
+
+      if (response.ok) {
+        let data = await response.json();
+        const data_to_verify = {
+          name: formData.name,
+          marks: formData.cgpa_percentage,
+          dob: formData.dob,
+          sheet: data.file_path,
+        };
+        console.log("Upload successful. File path:", data.file_path);
+        const res = await fetch("http://127.0.0.1:8000/verify/xmark/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data_to_verify),
+        });
+        data = await res.json();
+        console.log(data);
+      } else {
+        console.error("Upload failed.");
+      }
+    } catch (error) {
+      console.error("Error during file upload:", error);
+    }
   };
 
   return (
     <div className="p-10 max-w-5xl mx-auto bg-white rounded-lg shadow-lg border border-gray-200">
-      
-        <h1 className="text-center text-4xl font-semibold mb-8">Job Application Form</h1>
+      <h1 className="text-center text-4xl font-semibold mb-8">
+        Job Application Form
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-8">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
@@ -298,9 +308,7 @@ const handlexMarkVerify = async(e) => {
                   </div>
                 ) : (
                   <div>
-                    <div
-                      className="px-2 py-2 bg-green-600 text-white rounded-md focus:outline-none  disabled:bg-gray-400"
-                    >
+                    <div className="px-2 py-2 bg-green-600 text-white rounded-md focus:outline-none  disabled:bg-gray-400">
                       Verified
                     </div>
                   </div>
@@ -477,7 +485,6 @@ const handlexMarkVerify = async(e) => {
               <button
                 type="button"
                 onClick={handleGateVerify}
-                disabled={!fileVerified.gate_scorecard}
                 className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
               >
                 Verify GATE Scorecard
@@ -492,13 +499,12 @@ const handlexMarkVerify = async(e) => {
           className="w-full py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         <div className="flex justify-center">
-  <Button
-    text="Submit"
-    type="submit"
-    className="w-full max-w-xs py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
-  />
-</div>
-
+          <Button
+            text="Submit"
+            type="submit"
+            className="w-full max-w-xs py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+        </div>
       </form>
     </div>
   );

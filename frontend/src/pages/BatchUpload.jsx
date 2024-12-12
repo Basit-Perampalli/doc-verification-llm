@@ -23,14 +23,6 @@ const BatchUpload = () => {
   
     });
   };
-  useEffect(()=>{
-    setInterval(()=>{
-      const res = fetch("http://127.0.0.1:8000/verify/extractbatchdata/", {
-        method: "GET",
-      }).then((res)=>console.log(res.json()))
-
-    },2000)
-  }, documents)
   return (
     <div className="flex flex-col">
       <h1 className="text-center text-4xl font-semibold mb-8">Batch Upload</h1>
