@@ -14,7 +14,6 @@ def encode_image(image_path):
 
 TESTINGVISIONMODEL = "meta-llama/Llama-Vision-Free"
 TRAININGVISIONMODEL = "meta-llama/Llama-3.2-11B-Vision-Instruct-Turbo"
-
 JSONOUTPUTMODEL = "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo"
 
 
@@ -140,7 +139,23 @@ class GateOutput(BaseModel):
     out_of_100_marks: str = Field(description="mostly decimal number, out of 100")
     registration_number: str = Field(description="This is alphnumeric sequence")
     air: str = Field(description="")
-
+class Marksheet(BaseModel):
+    name: str = Field(description="The name of the person")
+    parent: str = Field(description="Gardian name")
+    dob: str = Field(description="Date of birth in format dd/mm/yyyy")
+    school: str = Field(description="name of the school")
+    result: str = Field(description="cant be pass or fail")
+class CasteOutput(BaseModel):
+    name: str = Field(description="The name of the person")
+    caste: str = Field(description="Caste name")
+    category: str = Field(description="sub caste category")
+    result: str = Field(description="cant be pass or fail")
+class DegreeOutput(BaseModel):
+    name: str = Field(description="The name of the person")
+    mother_name: str = Field(description="person mothers name")
+    degree: str = Field(description="field of stude")
+    university: str = Field(description="affilication university")
+    year: str = Field(description="This is year(yyyy) of passing")
 
 prompt = {
     "gate" : {
@@ -148,16 +163,16 @@ prompt = {
         "backup_query": GateOutput
     },
     "marksheet" : {
-        "query": "Extract the name, gate score, all india rank from the image in json format",
-        "backup_query": GateOutput
+        "query": "Extract card holder name as name,card holders fathers name,Date Of birth,The School Name  ,result status (pass/fail) in CSV",
+        "backup_query": Marksheet
     },
     "caste" : {
-        "query": "Extract the name, gate score, all india rank from the image in json format",
-        "backup_query": GateOutput
+        "query": "Extract in following format. {\"Name\":<name>,\"Caste\":<Caste name>,\"Category\":<cast category>}",
+        "backup_query": CasteOutput
     },
     "degree" : {
-        "query": "Extract the name, gate score, all india rank from the image in json format",
-        "backup_query": GateOutput
+        "query": "Extract in following format. {\"Name\":<Full name of degree holder>,\"Mother\":<Mother name>,\"Degree\":<Degree name>,\"university\":<name of university>,\"Year\":<year>} in JSON",
+        "backup_query": DegreeOutput
     }
 }
 
@@ -182,7 +197,7 @@ if __name__ == "__main__":
     
     
     clients = [
-        Together(api_key="364ae5d1e5c3e2f5e300ea5004c4bc5b7faef1ba96d31e2b8c636de78261e8bd"),
+        Together(api_key="770eedd0ceda2fa35a9ac7b7fdf7cae17a277301f5ebb9c19afb000a7ef79f18"),
     ]
     round = 0
     while True:
@@ -193,12 +208,7 @@ if __name__ == "__main__":
                 print(f"Processing: {filename}")
 
                 file_type = filename.split("@")[0]
-                
-                # TODO: remove this
-                # if not file_type:
-                file_type = "gate"
         
-                
                 start_time = time.time()
                 result = process_image(clients[round%len(clients)], prompt[file_type], file_path)
                 results[filename] = {

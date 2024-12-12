@@ -1,0 +1,520 @@
+{
+    "gate@gate_scorecard_57657.jpeg": {
+        "data": "{\n    \"candidate name\": \"nainsee pallavi pradeep kumar srivastava\",\n    \"registration number\": \"cs23s18012003\",\n    \"date of birth\": \"07-may-1989\",\n    \"examination paper\": \"computer science and information technology (cs)\",\n    \"gate score\": 228,\n    \"marks out of 100\": 21.67,\n    \"all india rank in this paper\": 28510,\n    \"number of candidates appeared in this paper\": 75680,\n    \"valid up to 31st march 2026\": \"2026-03-31\"\n}",
+        "timetaken": 4.448659658432007
+    },
+    "gate@gate_scorecard_57680.jpeg": {
+        "data": {
+            "name": "DEEPAK KUMAR",
+            "gate_score": "323",
+            "out_of_100_marks": "25.66",
+            "registration_number": "ME22S72002130",
+            "air": "14462"
+        },
+        "timetaken": 4.511703252792358
+    },
+    "gate@gate_scorecard_57697.jpeg": {
+        "data": "{\n  \"name\": \"sudip pandey\",\n  \"parent's/guardian's name\": \"sunil kumar pandey\",\n  \"registration number\": \"ph22s51228133\"\n}\n\n**scorecard**\n{\n  \"gate score\": 396,\n  \"marks out of 100\": 29,\n  \"all india rank in this paper\": 2024,\n  \"number of candidates appeared in this paper\": 19375\n}\n\n**additional information**\n{\n  \"qualifying marks\": 26.5,\n  \"general\": 23.8,\n  \"ews/obc (ncl)\": 17.6,\n  \"sc/st/pwd\": 17.6\n}\n\n**organizing institute and validity**\n{\n  \"organizing institute\": \"indian institute of technology kharagpur\",\n  \"valid up to 31st march 2025\"\n}\n\n**gate 2022 score formula**\n{\n  \"gate score = sy + (s1 - sq)(m - mg)/(mt - mq)\"\n}\n\n**general information**\n{\n  \"where, m is the marks obtained by the candidate in the paper, mentioned on this gate 2022 scorecard\",\n  \"mq is the qualifying marks for general category candidate in the paper\",\n  \"m, is the mean of marks of top 0.1% or top 10 (whichever is larger) of the candidates who appeared in the paper (in case of multi-session papers including all sessions)\",\n  \"s,= 350, is the score assigned to m,\",\n  \"s,= 900, is the score assigned to m,\"\n}",
+        "timetaken": 4.183782577514648
+    },
+    "gate@gate_scorecard_57700.jpeg": {
+        "data": "{\"candidate name\": \"rahul pandey amar jeet pandey\", \"registration number\": \"ec23s45007106\", \"gate score\": 737.0, \"marks out of 100\": 61.0, \"all india rank\": 210}",
+        "timetaken": 1.9155797958374023
+    },
+    "gate@gate_scorecard_57719.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57719.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_57723.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57723.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_57781.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57781.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_57786.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57786.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_57788.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57788.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_57796.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57796.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_57798.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57798.jpeg'"
+        },
+        "timetaken": 0.0009980201721191406
+    },
+    "gate@gate_scorecard_57805.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57805.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_57814.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57814.jpeg'"
+        },
+        "timetaken": 0.001004934310913086
+    },
+    "gate@gate_scorecard_57820.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57820.jpeg'"
+        },
+        "timetaken": 0.0009970664978027344
+    },
+    "gate@gate_scorecard_57837.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57837.jpeg'"
+        },
+        "timetaken": 0.0010004043579101562
+    },
+    "gate@gate_scorecard_57849.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_57849.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_59902.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_59902.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_59910.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_59910.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_59933.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_59933.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_59942.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_59942.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_59945.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_59945.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_59956.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_59956.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_60032.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_60032.jpeg'"
+        },
+        "timetaken": 0.0010025501251220703
+    },
+    "gate@gate_scorecard_60096.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_60096.jpeg'"
+        },
+        "timetaken": 0.0060007572174072266
+    },
+    "gate@gate_scorecard_60104.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_60104.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_60108.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_60108.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69507.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69507.jpeg'"
+        },
+        "timetaken": 0.0010027885437011719
+    },
+    "gate@gate_scorecard_69508.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69508.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69510.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69510.jpeg'"
+        },
+        "timetaken": 0.001312255859375
+    },
+    "gate@gate_scorecard_69511.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69511.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69514.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69514.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69529.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69529.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69533.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69533.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69534.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69534.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69539.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69539.jpeg'"
+        },
+        "timetaken": 0.0009996891021728516
+    },
+    "gate@gate_scorecard_69545.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69545.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69549.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69549.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69551.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69551.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69553.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69553.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69557.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69557.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69558.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69558.jpeg'"
+        },
+        "timetaken": 0.0009980201721191406
+    },
+    "gate@gate_scorecard_69562.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69562.jpeg'"
+        },
+        "timetaken": 0.001004934310913086
+    },
+    "gate@gate_scorecard_69564.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69564.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69565.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69565.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69575.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69575.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69577.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69577.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69579.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69579.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69586.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69586.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69589.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69589.jpeg'"
+        },
+        "timetaken": 0.0009996891021728516
+    },
+    "gate@gate_scorecard_69596.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69596.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69599.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69599.jpeg'"
+        },
+        "timetaken": 0.001001596450805664
+    },
+    "gate@gate_scorecard_69605.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69605.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69610.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69610.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69612.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69612.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "gate@gate_scorecard_69614.jpeg": {
+        "data": {
+            "error": "[Errno 2] No such file or directory: '../preprocessed\\\\gate@gate_scorecard_69614.jpeg'"
+        },
+        "timetaken": 0.0
+    },
+    "marksheet@Doc1.jpeg": {
+        "data": {
+            "name": "Tausique Zilani",
+            "parent": "Hasnain Zilani",
+            "dob": "20020491",
+            "school": "M.L.S.M. College, Darbhanga",
+            "result": "pass"
+        },
+        "timetaken": 6.272326469421387
+    },
+    "marksheet@Doc2.jpeg": {
+        "data": {
+            "name": "Manjoor Miya",
+            "parent": "Shaha Noor",
+            "dob": "09-10-1992",
+            "school": "Rasheed Memorial H S Baheri Bareilly",
+            "result": "Passed"
+        },
+        "timetaken": 4.2989115715026855
+    },
+    "marksheet@Doc3.jpeg": {
+        "data": {
+            "name": "Sanjoy Rabidas",
+            "parent": "Late Jagadish Rabidas",
+            "dob": "Not available",
+            "school": "Kanua Bilawanipur High School/Bengali Medium",
+            "result": "Pass"
+        },
+        "timetaken": 5.014859676361084
+    },
+    "marksheet@Doc4.jpeg": {
+        "data": {
+            "name": "Ravirant Singh",
+            "parent": "Mukhiya Singh",
+            "dob": "16/05/90",
+            "school": "High School Bankneramdas Gopal Ganj",
+            "result": "Pass"
+        },
+        "timetaken": 3.578420400619507
+    },
+    "marksheet@Doc5.jpeg": {
+        "data": {
+            "name": "SNEHA JAIN",
+            "parent": "ND Jain School Bah Agra UP",
+            "dob": "11-01-2005",
+            "school": "ND Jain School Bah Agra UP",
+            "result": "Pass"
+        },
+        "timetaken": 6.350799560546875
+    },
+    "marksheet@Doc6.jpeg": {
+        "data": {
+            "name": "Mohammad Kaif",
+            "parent": "Irshad Ahmad",
+            "dob": "10-01-1997",
+            "school": "Universal Institute of Education",
+            "result": "Pass"
+        },
+        "timetaken": 3.3775901794433594
+    },
+    "marksheet@age_proof_certificate_29602.jpeg": {
+        "data": {
+            "name": "Karimi Singh",
+            "parent": "P.R Singh",
+            "dob": "28-10-1997",
+            "school": "St. K.V. A.F.S. Baddora",
+            "result": "Pass"
+        },
+        "timetaken": 15.27874231338501
+    },
+    "marksheet@age_proof_certificate_29913.jpeg": {
+        "data": {
+            "name": "Manoj Kumar M",
+            "parent": "Mallikarjuna",
+            "dob": "21-12-1997",
+            "school": "Gramajyothi High School",
+            "result": "Pass"
+        },
+        "timetaken": 5.771693706512451
+    },
+    "marksheet@age_proof_certificate_30309.jpeg": {
+        "data": {
+            "name": "Amit Kumar Maury",
+            "parent": "Mr. Vinay Kumar Maury",
+            "dob": "19-08-1998",
+            "school": "Bayalasi Inter College Jalalpur Jaunpur",
+            "result": "PASS"
+        },
+        "timetaken": 4.653745889663696
+    },
+    "marksheet@age_proof_certificate_30356.jpeg": {
+        "data": {
+            "name": "Lala Ramteke Piyush Prakash",
+            "parent": "Lala Ramteke",
+            "dob": "24/08/1993",
+            "school": "School No. 06.01.094",
+            "result": "Pass"
+        },
+        "timetaken": 5.084093809127808
+    },
+    "marksheet@age_proof_certificate_30398.jpeg": {
+        "data": {
+            "name": "Chinmaya Kumar Sahoo",
+            "parent": "Sabita Sahoo",
+            "dob": "08/04/2000",
+            "school": "Vivekananda Bidyapitha, Keshapania",
+            "result": "Pass"
+        },
+        "timetaken": 4.215643882751465
+    },
+    "marksheet@age_proof_certificate_30785.jpeg": {
+        "data": {
+            "name": "sparsh bathla",
+            "parent": "Anita Bathla",
+            "dob": "20/05/1997",
+            "school": "Shivalik Holy Mount Academy",
+            "result": "Pass"
+        },
+        "timetaken": 4.836695671081543
+    },
+    "marksheet@age_proof_certificate_30997.jpeg": {
+        "data": {
+            "name": "Vinay Kumar Gupta",
+            "parent": "Mr.Ram Narayan Gupta",
+            "dob": "02-07-97",
+            "school": "Dr.A K S I C Akbar Pur Ambedkar Nagar",
+            "result": "Passed"
+        },
+        "timetaken": 5.616297006607056
+    },
+    "marksheet@age_proof_certificate_31121.jpeg": {
+        "data": {
+            "name": "Card Holder Confidentiality",
+            "parent": "Not Available",
+            "dob": "Unavailable",
+            "school": "Not Accessible",
+            "result": "Not Available"
+        },
+        "timetaken": 4.148870468139648
+    },
+    "marksheet@age_proof_certificate_31563.jpeg": {
+        "data": {
+            "name": "Sonali Raghuwanshi",
+            "parent": "Raj Kishore Raghuwanshi",
+            "dob": "1996-05-21",
+            "school": "GOVT SARVODAYA KANYA VID G T RD SHANDARA DELHI",
+            "result": "pass"
+        },
+        "timetaken": 4.633757591247559
+    },
+    "marksheet@age_proof_certificate_31716.jpeg": {
+        "data": {
+            "name": "Jenny Hemrom",
+            "parent": "Mathias Hemrom",
+            "dob": "05.03.1998",
+            "school": "St. Xavier's School, Bokaro Steel City",
+            "result": "Pass Certificate awarded, Grade A"
+        },
+        "timetaken": 26.150243997573853
+    },
+    "marksheet@age_proof_certificate_31834.jpeg": {
+        "data": {
+            "name": "Devesh Kumar Lal",
+            "parent": "Shri Shiv Charan Lal",
+            "dob": "31-05-1989",
+            "school": "B.C.M. H.S. School, Dewas",
+            "result": "Pass"
+        },
+        "timetaken": 5.7906999588012695
+    },
+    "marksheet@age_proof_certificate_32001.jpeg": {
+        "data": {
+            "name": "HarshA MoRe",
+            "parent": "Rajendra MoRe",
+            "dob": "21/03/1996",
+            "school": "LITTLE FLOWER SENIOR SEC SCHOOL SADAR BETUL MP",
+            "result": "Passed"
+        },
+        "timetaken": 5.678591012954712
+    },
+    "marksheet@age_proof_certificate_32246.jpeg": {
+        "data": {
+            "name": "Jagriti Dwivedi",
+            "parent": "Prachi Dwivedi",
+            "dob": "29/01/1997",
+            "school": "Aggarwal Pub Sch Ballabgarh Faridabad Haryana",
+            "result": "Pass"
+        },
+        "timetaken": 31.27266240119934
+    }
+}
