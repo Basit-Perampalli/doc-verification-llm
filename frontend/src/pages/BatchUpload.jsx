@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import FileUpload from "../components/FileUpload";
+import React, { useEffect, useState } from "react";
+
 const BatchUpload = () => {
   const [documents, setDocuments] = useState([]);
   const [type, settype] = useState("");
@@ -23,7 +22,6 @@ const BatchUpload = () => {
         method: "POST",
         body: doc,
       });
-  
     });
     setTimeout(ping(), 2000);
   };
@@ -41,8 +39,8 @@ const BatchUpload = () => {
     <div className="flex flex-col">
       <h1 className="text-center text-4xl font-semibold mb-8">Batch Upload</h1>
       <div>
-        <h3>Upload Files :</h3>
-        <div>
+        <h3>Upload Files:</h3>
+        <div className="flex space-x-4">
           <input
             type="file"
             multiple
@@ -60,7 +58,7 @@ const BatchUpload = () => {
           </button>
           <input className="m-3 border border-red" type="text" value={type} onChange={(e) => settype(e.target.value)} />
         </div>
-        <h3>Selected Files:</h3>
+        <h3 className="mt-4">Selected Files:</h3>
         <div className="flex flex-wrap">
           {documents.map((file, index) => (
             <div key={index} className="mx-2">
