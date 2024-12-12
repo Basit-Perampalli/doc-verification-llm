@@ -14,7 +14,6 @@ from .serializers import UserDetailsSerializer
 # List all UserDetails or Create a new one
 class UserDetailsListCreateAPIView(APIView):
     def get(self, request):
-        """Retrieve all UserDetails"""
         users = UserDetails.objects.all()
         serializer = UserDetailsSerializer(users, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

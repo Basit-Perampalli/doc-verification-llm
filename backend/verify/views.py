@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 import time
 import base64
+
 # import lmdeploy
 # from lmdeploy.vl import load_image
 import timeit
@@ -22,20 +23,24 @@ client = Together(api_key="")
 # Function to encode image as base64
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode('utf-8')
+        return base64.b64encode(image_file.read()).decode("utf-8")
+
 
 # Function to extract and clean up data from the response
 def extract_clean_data(response):
     try:
         # Directly access the content attribute of the message object
-        response_content = response.choices[0].message.content  # Accessing the content attribute
+        response_content = response.choices[
+            0
+        ].message.content  # Accessing the content attribute
         return response_content  # Return raw content for further processing
     except (json.JSONDecodeError, AttributeError, KeyError, IndexError) as e:
         return {"error": f"Failed to parse response: {str(e)}"}
 
+
 # Function to handle the Gradio interface
 def extract_data_from_image(query, image):
-    start=time.time()
+    start = time.time()
     # Gradio passes the image path as a string when type="filepath"
     base64_image = encode_image(image)  # Directly pass the string path to encode_image
 
@@ -58,12 +63,13 @@ def extract_data_from_image(query, image):
         ],
         stream=False,
     )
-    
+
     # Extract and clean the data from the response
     clean_data = extract_clean_data(response)
-    print(time.time()-start)
+    print(time.time() - start)
     print(clean_data)
     return clean_data
+
 
 # pipe = lmdeploy.pipeline("OpenGVLab/Mini-InternVL-Chat-2B-V1-5", generation_config={
 #     "max_new_tokens": 256,
@@ -146,22 +152,26 @@ def x_marksheet(request):
     name = data.get("name")
     marks = data.get("marks")
     sheet = data.get("sheet")
-    query='Extract only Card Holder name ,calculate total marks obtained  from the image in json format'
-    result=extract_data_from_image(query, sheet)
+    query = "Extract only Card Holder name ,calculate total percentage marks obtained  from the image in json format"
+    result = extract_data_from_image(query, sheet)
     print("DOne")
     result_str = result
     print(result_str)
     res = {}
-    if(name in result_str):
-        res['name'] = 'verified'
+    if name in result_str:
+        res["name"] = "verified"
     else:
-        res['name'] = 'not verified'
+        res["name"] = "not verified"
     if marks in result_str:
-        res['marks'] = 'verified'
+        res["marks"] = "verified"
     else:
-        res['marks'] = 'not verfied'
-    verified = True if res['name']==res['marks']=='verified' else False
-    return Response({"result":res,'verified':verified,"size": os.path.getsize(sheet)}, status=status.HTTP_200_OK)
+        res["marks"] = "not verfied"
+    verified = True if res["name"] == res["marks"] == "verified" else False
+    return Response(
+        {"result": res, "verified": verified, "size": os.path.getsize(sheet)},
+        status=status.HTTP_200_OK,
+    )
+
 
 @api_view(["POST"])
 def verify_pan(request):
@@ -175,19 +185,25 @@ def verify_pan(request):
     #     content = f.read()
     #     prompt = json.loads(content)['pan']
     # result, time = model_inference(pan, prompt)
-    return Response({"result":result, "size": os.path.getsize(pan)}, status=status.HTTP_200_OK)
+    return Response(
+        {"result": result, "size": os.path.getsize(pan)}, status=status.HTTP_200_OK
+    )
 
 
 @api_view(["POST"])
 def verify_gate(request):
     data = request.data
     name = data.get("name")
-    dob = data.get("dob")
+    reg_number = data.get("reg_number")
     score = data.get("score")
+    rank = data.get("rank")
     gate = data.get("gate")
-    result = gate
-    # with open("./verify/prompt.json") as f:
-    #     content = f.read()
-    #     prompt = json.loads(content)['gate']
-    # result, time = model_inference(gate, prompt)
-    return Response({"result":result,"size": os.path.getsize(gate)}, status=status.HTTP_200_OK)
+    print(name, rank,score, reg_number, gate)
+    query = "Extract only Card Holder name ,total gate score,registration number,all india rank in json"
+    result = extract_data_from_image(query, gate)
+    # print("DOne")
+    result_str = result
+    print(result_str)
+    res = {}
+
+    return Response("size", status=status.HTTP_200_OK)
