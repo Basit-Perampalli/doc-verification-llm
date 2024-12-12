@@ -26,6 +26,9 @@ class UserDetails(models.Model):
     education_doc = models.FileField(
         upload_to="education_docs/"
     )  # Path to uploaded educational document
+    xMarksheet_verified = models.BooleanField(
+        default=False
+    )
     gate_registration_number = models.CharField(
         max_length=20, blank=True, null=True
     )  # GATE registration number
