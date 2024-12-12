@@ -3,8 +3,11 @@ import { useState } from "react";
 import FileUpload from "../components/FileUpload";
 const BatchUpload = () => {
   const [documents, setDocuments] = useState([]);
-  const [type, settype] = useState("aadhar");
+  const [type, settype] = useState("");
+
   const types = ["none", "aadhar", "gate", "caste", "marksheet"];
+  const [status, setStatus] = useState(null);
+
   const handleUpload = () => {
     let updated_doc = documents;
     updated_doc = updated_doc.map(
@@ -22,15 +25,18 @@ const BatchUpload = () => {
       });
   
     });
+    setTimeout(ping(), 2000);
   };
-  useEffect(()=>{
-    setInterval(()=>{
-      const res = fetch("http://127.0.0.1:8000/verify/extractbatchdata/", {
+  const ping = ()=>{
+      fetch("http://127.0.0.1:8000/verify/batchdata/", {
         method: "GET",
-      }).then((res)=>console.log(res.json()))
-
-    },2000)
-  }, documents)
+      }).then((res) => {
+        return res.json();
+      }).then((data) => {
+        setStatus(data);
+        setTimeout(ping, 2000)
+      });
+  }
   return (
     <div className="flex flex-col">
       <h1 className="text-center text-4xl font-semibold mb-8">Batch Upload</h1>
@@ -52,6 +58,7 @@ const BatchUpload = () => {
           >
             Upload
           </button>
+          <input className="m-3 border border-red" type="text" value={type} onChange={(e) => settype(e.target.value)} />
         </div>
         <h3>Selected Files:</h3>
         <div className="flex flex-wrap">
@@ -62,7 +69,28 @@ const BatchUpload = () => {
           ))}
         </div>
       </div>
-      <div></div>
+          <div>
+            {documents.map((file) => (
+              <div key={file.name} className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                  <a href="#">
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{file.name}
+                      </h5>
+                  </a>
+                  <div href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    extracted data: {status[file.name] ? status[file.name] : "loading..."}
+                    time: {status?.timetaken}
+                  </div>
+              </div>
+
+
+            ))}  
+          </div>
+
+      <div>
+        <button onClick={ping}>
+          PING
+        </button>
+      </div>
     </div>
   );
 };
