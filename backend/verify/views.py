@@ -7,23 +7,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 
-import lmdeploy
-from lmdeploy.vl import load_image
-import timeit
-import torch
 
 
-pipe = lmdeploy.pipeline("OpenGVLab/Mini-InternVL-Chat-2B-V1-5", generation_config={
-    "max_new_tokens": 256,
-    "temperature": 1.0,
-    "stop_token_ids": [2]
-})
-
-def model_inference(image_path, prompt):
-    start = timeit.default_timer()
-    image = load_image(image_path)
-    res = pipe((prompt, image))
-    return res.text, timeit.default_timer() - start
 
 
 @csrf_exempt
