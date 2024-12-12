@@ -23,7 +23,7 @@ client = Together(api_key="f5768fe361d19904facb1ecc05f9bf26e847d4fa2556f703ec6fa
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
-    
+
 # Function to extract and clean up data from the response
 def extract_clean_data(response):
     try:
@@ -85,7 +85,7 @@ def upload_image(request):
         uploaded_file = request.FILES["image"]
 
         # Save the file temporarily
-        fs = FileSystemStorage(location="temp/")
+        fs = FileSystemStorage(location="not_preprocessed/")
         filename = fs.save(uploaded_file.name, uploaded_file)
         file_path = fs.path(filename)
 
@@ -101,26 +101,35 @@ def verify_aadhar(request):
     name = data.get("name")
     aadhar_number = data.get("aadhar_number")
     aadhar = data.get("aadhar")
-    query='Extract only Card Holder name ,Date of birth and adhar number from the image in json format'
-    result=extract_data_from_image(query, aadhar)
+    query = "Extract only Card Holder name ,Date of birth and adhar number from the image in json format"
+    result = extract_data_from_image(query, aadhar)
     print("DOne")
     result_str = result
     res = {}
-    if(name in result_str):
-        res['name'] = 'verified'
+    if name in result_str:
+        res["name"] = "verified"
     else:
-        res['name'] = 'not verified'
+        res["name"] = "not verified"
     aadhar_number = str(aadhar_number)
-    aadhar_num = ''
+    aadhar_num = ""
     for i in range(3):
-        aadhar_num+= aadhar_number[i*4:i*4+4]+' ' 
+        aadhar_num += aadhar_number[i * 4 : i * 4 + 4] + " "
 
-    if(aadhar_num[0:14] in result_str or aadhar_num[0:14] in result_str):
-        res['aadhar_number'] = 'verified'
+    if aadhar_num[0:14] in result_str or aadhar_number in result_str:
+        res["aadhar_number"] = "verified"
     else:
-        res['aadhar_number'] = 'not verified'
+        res["aadhar_number"] = "not verified"
     print(res)
-    verified = True if res['name']==res['aadhar_number']=='verified' else False
+    verified = True if res["name"] == res["aadhar_number"] == "verified" else False
+    return Response(
+        {"result": res, "verified": verified, "size": os.path.getsize(aadhar)},
+        status=status.HTTP_200_OK,
+    )
+
+
+@api_view(["POST"])
+def get_extracted_batch_data(request):
+    
     return Response({"result":res,'verified':verified,"size": os.path.getsize(aadhar)}, status=status.HTTP_200_OK)
 
 
@@ -130,7 +139,7 @@ def x_marksheet(request):
     name = data.get("name")
     marks = data.get("marks")
     sheet = data.get("sheet")
-    query='Extract only Card Holder name ,total marks obtained from the image in json format'
+    query='Extract only Card Holder name ,calculate total marks obtained  from the image in json format'
     result=extract_data_from_image(query, sheet)
     print("DOne")
     result_str = result
@@ -162,7 +171,6 @@ def verify_pan(request):
     return Response({"result":result, "size": os.path.getsize(pan)}, status=status.HTTP_200_OK)
 
 
-
 @api_view(["POST"])
 def verify_gate(request):
     data = request.data
@@ -176,4 +184,3 @@ def verify_gate(request):
     #     prompt = json.loads(content)['gate']
     # result, time = model_inference(gate, prompt)
     return Response({"result":result,"size": os.path.getsize(gate)}, status=status.HTTP_200_OK)
-
