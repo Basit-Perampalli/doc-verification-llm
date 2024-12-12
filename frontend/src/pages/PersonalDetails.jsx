@@ -9,11 +9,9 @@ function PersonalDetails() {
     dob: '',
     email: '',
     mobile_number: '',
-    gender: 'male',
     aadhar_number: '',
     aadhar: null,
-    pan_number: '',
-    pan: null,
+    aadhar_verified:false,
 
 
     //Educational Details
@@ -60,9 +58,18 @@ function PersonalDetails() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('Form Data Submitted:', formData);
+    const res = await fetch("http://127.0.0.1:8000/applicantform/users/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      data = await res.json();
+      console.log(data);
   };
 
 const handleAadhaarVerify = async (e) => {

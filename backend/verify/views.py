@@ -55,7 +55,7 @@ def verify_aadhar(request):
     #     content = f.read()
     #     prompt = json.loads(content)['aadhar']
     # result, time = model_inference(aadhar, prompt)
-    return Response({"result":result,"time": time, "size": os.path.getsize(aadhar)}, status=status.HTTP_200_OK)
+    return Response({"result":result, "size": os.path.getsize(aadhar)}, status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])
@@ -70,7 +70,7 @@ def verify_pan(request):
     #     content = f.read()
     #     prompt = json.loads(content)['pan']
     # result, time = model_inference(pan, prompt)
-    return Response({"result":result,"time": time, "size": os.path.getsize(pan)}, status=status.HTTP_200_OK)
+    return Response({"result":result, "size": os.path.getsize(pan)}, status=status.HTTP_200_OK)
 
 
 
@@ -86,5 +86,5 @@ def verify_gate(request):
     #     content = f.read()
     #     prompt = json.loads(content)['gate']
     # result, time = model_inference(gate, prompt)
-    return Response({"result":result,"time": time, "size": os.path.getsize(gate)}, status=status.HTTP_200_OK)
+    return Response({"result":result,"size": os.path.getsize(gate)}, status=status.HTTP_200_OK)
 
