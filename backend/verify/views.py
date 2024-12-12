@@ -130,7 +130,7 @@ def verify_aadhar(request):
 @api_view(["POST"])
 def get_extracted_batch_data(request):
     
-    return Response({"result":res,'verified':verified,"size": os.path.getsize(aadhar)}, status=status.HTTP_200_OK)
+    return Response('hello', status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])
