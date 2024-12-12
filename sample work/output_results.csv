@@ -1,0 +1,10 @@
+{
+    "4.jpg": "Sure, here is the name, date of birth, and Aadhaar card number extracted from the image in JSON format:\n\n\"{\n    \"name\": \"Pushpam Kumar\",\n    \"dob\": \"02/05/1989\",\n    \"aadhar_number\": \"910357153824\"\n}\"",
+    "50.jpg": "**Extracting Name, Date of Birth, and Aadhaar Number from the Image**\n\nBased on the visible information in the image, we can extract the following details in JSON format:\n\n```json\n{\n  \"name\": \"P Edward Francis\",\n  \"dob\": \"2007/1978\",\n  \"aadhaar_number\": \"5052 0758 6350\"\n}\n```\n\nNote: The date of birth is provided in the format \"YYYY/MM/DD\", which is not a standard format. In this case, it appears to be \"YYYY/DD/MM\". Please verify the date of birth with the provided format.\n\n**Additional Information:**\n\n* The Aadhaar number is a 12-digit unique identifier.\n* The image appears to be a scanned or photographed copy of an Aadhaar card, which is a government-issued identity document in India.\n* The card includes various other details, such as the enrolment number, address, and photograph, but these are not included in the extracted JSON format.",
+    "64.jpg": "{\"name\": \"Anitha Nagaraj Mugannavar\", \"dob\": \"22/05/1992\", \"aadhar_number\": \"2827 8532 8765\"}",
+    "65.jpg": "{\"name\": \"Prashant Vashist\", \"dob\": \"15/04/1992\", \"aadhar number\": \"2896 4263 2911\"}",
+    "66.jpg": "{\"Name\": \"Jyoti Gupta\",\"DOB\": \"01/08/1993\",\"Aadhar Number\": \"3088 6913 1892\"}",
+    "73.jpg": "*Name: Rashmi Kushwaha*\n\n*Date of Birth: 23/04/1991*\n\n*Unique Identification Number: 8883 4637 2102*",
+    "74.jpg": "{ \"Name\": \"Arun S\", \"DOB\": \"19/04/1996\", \"Aadhar Number\": \"8908 8076 3441\" }",
+    "79.jpg": "{\"Name\" : \"Vaibhav Kabra\", \"DOB\" : \"28/05/1987\", \"Aadhar Number\" : \"9194 0858 9707 5721\"}"
+}
