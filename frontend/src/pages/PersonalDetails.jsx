@@ -53,7 +53,7 @@ function PersonalDetails() {
     });
     setFileVerified({
       ...fileVerified,
-      [field]: !!file,
+      [field]: 0,
     });
   };
 
@@ -108,6 +108,9 @@ const handleAadhaarVerify = async (e) => {
         'aadhar': true,
       });
       setFileVerified({...fileVerified,'aadhar':1})
+    }
+    else{
+      setFileVerified({ ...fileVerified, aadhar: 0 });
     }
       console.log(data);
     } else {
@@ -200,10 +203,13 @@ const handlexMarkVerify = async(e) => {
 
   return (
     <div className="p-10 max-w-5xl mx-auto bg-white rounded-lg shadow-lg border border-gray-200">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Application Form</h1>
+      
+        <h1 className="text-center text-4xl font-semibold mb-8">Job Application Form</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">Personal Details</h2>
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+            Personal Details
+          </h2>
           <div className="grid grid-cols-2 gap-6">
             <label className="block">
               <span className="text-gray-600">Full Name</span>
@@ -265,22 +271,49 @@ const handlexMarkVerify = async(e) => {
             </label>
 
             <div className="border mt-4 border-gray-300 rounded-lg p-4 flex items-center space-x-2">
-  <FileUpload name="aadhar" file={formData.aadhar} onFileChange={handleFileChange} />
-  <button
-    type="button"
-    onClick={handleAadhaarVerify}
-    disabled={!fileVerified.aadhar}
-    className="px-2 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
-  >
-    Verify Aadhar
-  </button>
-</div>
-
+              <FileUpload
+                name="aadhar"
+                file={formData.aadhar}
+                onFileChange={handleFileChange}
+              />
+              <div>
+                {fileVerified.aadhar === -1 ? (
+                  <button
+                    type="button"
+                    onClick={handleAadhaarVerify}
+                    disabled={!fileVerified.aadhar}
+                    className="px-2 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+                  >
+                    Verify Aadhar
+                  </button>
+                ) : fileVerified.aadhar === 0 ? (
+                  <div className="flex">
+                    <button
+                      type="button"
+                      onClick={handleAadhaarVerify}
+                      className="px-2 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+                    >
+                      Verify Again
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <div
+                      className="px-2 py-2 bg-green-600 text-white rounded-md focus:outline-none  disabled:bg-gray-400"
+                    >
+                      Verified
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">Educational Details</h2>
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+            Educational Details
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <label className="block">
               <span className="text-gray-600">Highest Education</span>
@@ -294,29 +327,29 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-    <label className="block col-span-2">
-      <span className="text-gray-600">University Name</span>
-      <input
-        type="text"
-        name="university_name"
-        value={formData.university_name}
-        onChange={handleChange}
-        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter University Name"
-      />
-    </label>
+            <label className="block col-span-2">
+              <span className="text-gray-600">University Name</span>
+              <input
+                type="text"
+                name="university_name"
+                value={formData.university_name}
+                onChange={handleChange}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter University Name"
+              />
+            </label>
 
-    <label className="block col-span-2">
-      <span className="text-gray-600">Institute Name</span>
-      <input
-        type="text"
-        name="institute_name"
-        value={formData.institute_name}
-        onChange={handleChange}
-        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter Institute Name"
-      />
-    </label>
+            <label className="block col-span-2">
+              <span className="text-gray-600">Institute Name</span>
+              <input
+                type="text"
+                name="institute_name"
+                value={formData.institute_name}
+                onChange={handleChange}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter Institute Name"
+              />
+            </label>
 
             <label className="block">
               <span className="text-gray-600">Passout Year</span>
@@ -329,129 +362,135 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-    <label className="block col-span-2">
-      <span className="text-gray-600">Roll Number</span>
-      <input
-        type="text"
-        name="roll_number"
-        value={formData.roll_number}
-        onChange={handleChange}
-        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter Roll Number"
-      />
-    </label>
+            <label className="block col-span-2">
+              <span className="text-gray-600">Roll Number</span>
+              <input
+                type="text"
+                name="roll_number"
+                value={formData.roll_number}
+                onChange={handleChange}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter Roll Number"
+              />
+            </label>
 
-    <label className="block col-span-2">
-      <span className="text-gray-600">CGPA/Percentage</span>
-      <input
-        type="text"
-        name="cgpa_percentage"
-        value={formData.cgpa_percentage}
-        onChange={handleChange}
-        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter CGPA or Percentage"
-      />
-    </label>
+            <label className="block col-span-2">
+              <span className="text-gray-600">CGPA/Percentage</span>
+              <input
+                type="text"
+                name="cgpa_percentage"
+                value={formData.cgpa_percentage}
+                onChange={handleChange}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter CGPA or Percentage"
+              />
+            </label>
 
-    <div className="grid grid-cols-2 gap-10">
-      <FileUpload name="xMarksheet" file={formData.xMarksheet} onFileChange={handleFileChange} />
-      <button
-        type="button"
-        onClick={handlexMarkVerify}
-        disabled={!fileVerified.xMarksheet}
-        className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
-      >
-        Verify X Marksheet
-      </button>
-    </div>
-  </div>
-</div>
-
+            <div className="grid grid-cols-2 gap-10">
+              <FileUpload
+                name="xMarksheet"
+                file={formData.xMarksheet}
+                onFileChange={handleFileChange}
+              />
+              <button
+                type="button"
+                onClick={handlexMarkVerify}
+                className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+              >
+                Verify X Marksheet
+              </button>
+            </div>
+          </div>
+        </div>
 
         <div className="mb-8">
-  <h2 className="text-xl font-semibold text-gray-700 mb-4">GATE Details</h2>
-  <div className="space-y-6">
-    <label className="block col-span-2">
-      <span className="text-gray-600">Registration Number</span>
-      <input
-        type="text"
-        name="gate_registration_number"
-        value={formData.gate_registration_number}
-        onChange={handleChange}
-        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter Registration Number"
-      />
-    </label>
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+            GATE Details
+          </h2>
+          <div className="space-y-6">
+            <label className="block col-span-2">
+              <span className="text-gray-600">Registration Number</span>
+              <input
+                type="text"
+                name="gate_registration_number"
+                value={formData.gate_registration_number}
+                onChange={handleChange}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter Registration Number"
+              />
+            </label>
 
-    <label className="block col-span-2">
-      <span className="text-gray-600">Gate Test Paper</span>
-      <input
-        type="text"
-        name="gate_test_paper"
-        value={formData.gate_test_paper}
-        onChange={handleChange}
-        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter Gate Test Paper"
-      />
-    </label>
+            <label className="block col-span-2">
+              <span className="text-gray-600">Gate Test Paper</span>
+              <input
+                type="text"
+                name="gate_test_paper"
+                value={formData.gate_test_paper}
+                onChange={handleChange}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter Gate Test Paper"
+              />
+            </label>
 
-    <label className="block col-span-2">
-      <span className="text-gray-600">Exam Date</span>
-      <input
-        type="date"
-        name="gate_exam_date"
-        value={formData.gate_exam_date}
-        onChange={handleChange}
-        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter Exam Date"
-      />
-    </label>
+            <label className="block col-span-2">
+              <span className="text-gray-600">Exam Date</span>
+              <input
+                type="date"
+                name="gate_exam_date"
+                value={formData.gate_exam_date}
+                onChange={handleChange}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter Exam Date"
+              />
+            </label>
 
-    <label className="block col-span-2">
-      <span className="text-gray-600">GATE Score</span>
-      <input
-        type="text"
-        name="gate_score"
-        value={formData.gate_score}
-        onChange={handleChange}
-        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter GATE Score"
-      />
-    </label>
-    
-    <label className="block col-span-2">
-      <span className="text-gray-600">GATE AIR Rank</span>
-      <input
-        type="text"
-        name="gate_air_rank"
-        value={formData.gate_air_rank}
-        onChange={handleChange}
-        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter GATE AIR Rank"
-      />
-    </label>
+            <label className="block col-span-2">
+              <span className="text-gray-600">GATE Score</span>
+              <input
+                type="text"
+                name="gate_score"
+                value={formData.gate_score}
+                onChange={handleChange}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter GATE Score"
+              />
+            </label>
 
-    <div className="grid grid-cols-2 gap-6">
-      <FileUpload name="gate_scorecard" file={formData.gate_scorecard} onFileChange={handleFileChange} />
-      <button
-        type="button"
-        onClick={handleGateVerify}
-        disabled={!fileVerified.gate_scorecard}
-        className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
-      >
-        Verify GATE Scorecard
-      </button>
-    </div>
-  </div>
-</div>
+            <label className="block col-span-2">
+              <span className="text-gray-600">GATE AIR Rank</span>
+              <input
+                type="text"
+                name="gate_air_rank"
+                value={formData.gate_air_rank}
+                onChange={handleChange}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter GATE AIR Rank"
+              />
+            </label>
 
+            <div className="grid grid-cols-2 gap-6">
+              <FileUpload
+                name="gate_scorecard"
+                file={formData.gate_scorecard}
+                onFileChange={handleFileChange}
+              />
+              <button
+                type="button"
+                onClick={handleGateVerify}
+                disabled={!fileVerified.gate_scorecard}
+                className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+              >
+                Verify GATE Scorecard
+              </button>
+            </div>
+          </div>
+        </div>
 
         <Button
-  text="Submit"
-  type="submit"
-  className="w-full py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
-/>
-
+          text="Submit"
+          type="submit"
+          className="w-full py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
       </form>
     </div>
   );
