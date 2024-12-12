@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import FileUpload from '../components/FileUpload';
 import Button from '../components/Button';
 
+
+
 function PersonalDetails() {
   const [formData, setFormData] = useState({
     //Personal Details
@@ -22,7 +24,7 @@ function PersonalDetails() {
     roll_number: '',
     cgpa_percentage: '',
     xMarksheet: null,
-    xMarksheet_verification:false,    // GATE details
+    xMarksheet_verified:false,    // GATE details
     gate_registration_number: '',
     gate_test_paper: '',
     gate_exam_date: '',
@@ -314,7 +316,7 @@ const handlexMarkVerify = async(e) => {
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
             Educational Details
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-6">
             <label className="block">
               <span className="text-gray-600">Highest Education</span>
               <input
@@ -327,7 +329,7 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-            <label className="block col-span-2">
+            <label className="block">
               <span className="text-gray-600">University Name</span>
               <input
                 type="text"
@@ -339,7 +341,7 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-            <label className="block col-span-2">
+            <label className="block">
               <span className="text-gray-600">Institute Name</span>
               <input
                 type="text"
@@ -362,7 +364,7 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-            <label className="block col-span-2">
+            <label className="block">
               <span className="text-gray-600">Roll Number</span>
               <input
                 type="text"
@@ -374,7 +376,7 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-            <label className="block col-span-2">
+            <label className="block">
               <span className="text-gray-600">CGPA/Percentage</span>
               <input
                 type="text"
@@ -386,7 +388,7 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-            <div className="grid grid-cols-2 gap-10">
+            <div className="border border-gray-300 rounded-lg p-4 flex items-center space-x-2">
               <FileUpload
                 name="xMarksheet"
                 file={formData.xMarksheet}
@@ -397,7 +399,7 @@ const handlexMarkVerify = async(e) => {
                 onClick={handlexMarkVerify}
                 className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
               >
-                Verify X Marksheet
+                Verify Marksheet
               </button>
             </div>
           </div>
@@ -407,8 +409,8 @@ const handlexMarkVerify = async(e) => {
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
             GATE Details
           </h2>
-          <div className="space-y-6">
-            <label className="block col-span-2">
+          <div className="grid grid-cols-2 gap-6">
+            <label className="block">
               <span className="text-gray-600">Registration Number</span>
               <input
                 type="text"
@@ -420,7 +422,7 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-            <label className="block col-span-2">
+            <label className="block">
               <span className="text-gray-600">Gate Test Paper</span>
               <input
                 type="text"
@@ -432,7 +434,7 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-            <label className="block col-span-2">
+            <label className="block">
               <span className="text-gray-600">Exam Date</span>
               <input
                 type="date"
@@ -444,7 +446,7 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-            <label className="block col-span-2">
+            <label className="block">
               <span className="text-gray-600">GATE Score</span>
               <input
                 type="text"
@@ -456,7 +458,7 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-            <label className="block col-span-2">
+            <label className="block">
               <span className="text-gray-600">GATE AIR Rank</span>
               <input
                 type="text"
@@ -468,7 +470,7 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="border mt-3 border-gray-300 rounded-lg p-4 flex items-center space-x-2">
               <FileUpload
                 name="gate_scorecard"
                 file={formData.gate_scorecard}
@@ -486,11 +488,7 @@ const handlexMarkVerify = async(e) => {
           </div>
         </div>
 
-        <Button
-          text="Submit"
-          type="submit"
-          className="w-full py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
-        />
+        
         <div className="flex justify-center">
   <Button
     text="Submit"
