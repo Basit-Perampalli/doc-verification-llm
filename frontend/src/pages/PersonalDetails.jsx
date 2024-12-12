@@ -429,11 +429,14 @@ function PersonalDetails() {
           </div>
         </div>
 
-        <Button
-  text="Submit"
-  type="submit"
-  className="w-full py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
-/>
+        <div className="flex justify-center">
+  <Button
+    text="Submit"
+    type="submit"
+    className="w-full max-w-xs py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+  />
+</div>
+
       </form>
     </div>
   );
