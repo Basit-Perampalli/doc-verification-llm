@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 
 const BatchUpload = () => {
   const [documents, setDocuments] = useState([]);
-  const [type, setType] = useState(""); // Correct state name for file type
+  const [type, settype] = useState("");
+
+  const types = ["none", "aadhar", "gate", "caste", "marksheet"];
+  const [status, setStatus] = useState(null);
 
   const handleUpload = () => {
     let updated_doc = documents;
@@ -20,21 +23,18 @@ const BatchUpload = () => {
         body: doc,
       });
     });
+    setTimeout(ping(), 2000);
   };
-
-  useEffect(() => {
-    setInterval(() => {
-      const res = fetch("http://127.0.0.1:8000/verify/extractbatchdata/", {
+  const ping = ()=>{
+      fetch("http://127.0.0.1:8000/verify/batchdata/", {
         method: "GET",
-      }).then((res) => res.json()).then((data) => console.log(data));
-    }, 2000);
-  }, [documents]);
-
-  // Function to handle the dropdown change event
-  const handleDropdownChange = (event) => {
-    setType(event.target.value);
-  };
-
+      }).then((res) => {
+        return res.json();
+      }).then((data) => {
+        setStatus(data);
+        setTimeout(ping, 2000)
+      });
+  }
   return (
     <div className="flex flex-col">
       <h1 className="text-center text-4xl font-semibold mb-8">Batch Upload</h1>
@@ -48,25 +48,15 @@ const BatchUpload = () => {
               setDocuments(Array.from(e.target.files));
               console.log(Array.from(e.target.files));
             }}
-            className="border p-2 rounded"
           />
-          <div className="flex items-center">
-            <h2 className="mr-2">Select an option:</h2>
-            <select value={type} onChange={handleDropdownChange} className="border p-2 rounded">
-              <option value="">--Please choose an option--</option>
-              <option value="aadhar">Aadhar Card</option>
-              <option value="gate">GATE Scorecard</option>
-              <option value="caste">Caste</option>
-              <option value="marksheet">Marksheet</option>
-            </select>
-          </div>
-        <button
-          onClick={handleUpload}
-          type="button"
-          className="px-4 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400 ml-2"
-        >
-          Upload
-        </button>
+          <button
+            onClick={handleUpload}
+            type="button"
+            className="px-2 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+          >
+            Upload
+          </button>
+          <input className="m-3 border border-red" type="text" value={type} onChange={(e) => settype(e.target.value)} />
         </div>
         <h3 className="mt-4">Selected Files:</h3>
         <div className="flex flex-wrap">
@@ -76,6 +66,28 @@ const BatchUpload = () => {
             </div>
           ))}
         </div>
+      </div>
+          <div>
+            {documents.map((file) => (
+              <div key={file.name} className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                  <a href="#">
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{file.name}
+                      </h5>
+                  </a>
+                  <div href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    extracted data: {status[file.name] ? status[file.name] : "loading..."}
+                    time: {status?.timetaken}
+                  </div>
+              </div>
+
+
+            ))}  
+          </div>
+
+      <div>
+        <button onClick={ping}>
+          PING
+        </button>
       </div>
     </div>
   );

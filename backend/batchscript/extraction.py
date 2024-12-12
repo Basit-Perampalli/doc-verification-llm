@@ -192,11 +192,7 @@ if __name__ == "__main__":
                 file_path = os.path.join(source_folder, filename)
                 print(f"Processing: {filename}")
 
-                # Process the image and store the result
-                # if "@" not in file_path:
-                #     continue
-
-                # file_type = filename.split("@")[0]
+                file_type = filename.split("@")[0]
                 
                 # TODO: remove this
                 # if not file_type:
