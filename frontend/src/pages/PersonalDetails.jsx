@@ -257,37 +257,35 @@ const handlexMarkVerify = async(e) => {
               />
             </label>
 
-            <div className='grid grid-cols-2 gap-6'>
-              <FileUpload name="aadhar" file={formData.aadhar} onFileChange={handleFileChange} />
-              <button
-                type="button"
-                onClick={handleAadhaarVerify}
-                disabled={!fileVerified.aadhar}
-                className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
-              >
-                Verify Aadhar
-              </button>
-            </div>
-            </div>
+            <div className="border mt-4 border-gray-300 rounded-lg p-4 flex items-center space-x-2">
+  <FileUpload name="aadhar" file={formData.aadhar} onFileChange={handleFileChange} />
+  <button
+    type="button"
+    onClick={handleAadhaarVerify}
+    disabled={!fileVerified.aadhar}
+    className="px-2 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+  >
+    Verify Aadhar
+  </button>
 </div>
-<div className="mb-8">
-  <h2 className="text-xl font-semibold text-gray-700 mb-4">Educational Details</h2>
-  <div className="grid grid-cols-2 gap-6">
-    <label className="block">
-      <span className="text-gray-600">Highest Qualification</span>
-      <select
-        name="highest_education"
-        value={formData.highest_education}
-        onChange={handleChange}
-        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-      >
-        <option value="10th">Class 10 or Equivalent</option>
-        <option value="12th">Class 12 or Equivalent</option>
-        <option value="Bachelors">Bachelors</option>
-        <option value="Masters">Masters</option>
-        <option value="PhD">PhD</option>
-      </select>
-    </label>
+
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">Educational Details</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <label className="block">
+              <span className="text-gray-600">Highest Education</span>
+              <input
+                type="text"
+                name="highest_education"
+                value={formData.highest_education}
+                onChange={handleChange}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter your highest education"
+              />
+            </label>
 
     <label className="block col-span-2">
       <span className="text-gray-600">University Name</span>
@@ -313,17 +311,16 @@ const handlexMarkVerify = async(e) => {
       />
     </label>
 
-    <label className="block col-span-2">
-      <span className="text-gray-600">Pass Out Date</span>
-      <input
-        type="text"
-        name="pass_out_date"
-        value={formData.pass_out_date}
-        onChange={handleChange}
-        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter Pass Out Month and Year"
-      />
-    </label>
+            <label className="block">
+              <span className="text-gray-600">Passout Year</span>
+              <input
+                type="text"
+                name="pass_out_date"
+                value={formData.pass_out_date}
+                onChange={handleChange}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </label>
 
     <label className="block col-span-2">
       <span className="text-gray-600">Roll Number</span>
