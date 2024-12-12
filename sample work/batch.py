@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 from together import Together
 
 # Initialize Together client with your API key
-client = Together(api_key="364ae5d1e5c3e2f5e300ea5004c4bc5b7faef1ba96d31e2b8c636de78261e8bd")
+client = Together(api_key="")
 
 
 DATA = {

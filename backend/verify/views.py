@@ -16,7 +16,7 @@ import torch
 import datetime
 
 # Initialize Together client with your API key
-client = Together(api_key="f5768fe361d19904facb1ecc05f9bf26e847d4fa2556f703ec6fab79537edc09")
+client = Together(api_key="")
 
 
 # Function to encode image as base64
